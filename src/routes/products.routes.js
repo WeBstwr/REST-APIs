@@ -28,4 +28,33 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    const productthumbnail = req.body.productthumbnail;
+    const producttitle = req.body.producttitle;
+    const productdescription = req.body.productdescription;
+    const productcost = req.body.productcost;
+    const onoffer = req.body.onoffer;
+    const id = req.body.id;
+    const insert = await pool.query(
+      "INSERT INTO products (productthumbnail, producttitle, productdescription, productcost, onoffer, id) VALUES($1, $2, $3, $4, $5, $6)",
+      [
+        productthumbnail,
+        producttitle,
+        productdescription,
+        productcost,
+        onoffer,
+        id,
+      ],
+    );
+    if (insert.rowCount === 1) {
+      res
+        .status(201)
+        .json({ success: true, message: "Product Added Successfully" });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 export default router;
