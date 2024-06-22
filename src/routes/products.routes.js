@@ -110,4 +110,23 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const deleteOperation = await pool.query(
+      "DELETE FROM products WHERE id = $1",
+      [id],
+    );
+    if (deleteOperation.rowCount === 1) {
+      res
+        .status(200)
+        .json({ success: true, message: "Product Deleted Successfully" });
+    } else {
+      res.status(400).json({ success: false, message: "Invalid Product" });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 export default router;
