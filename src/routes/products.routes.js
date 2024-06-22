@@ -57,4 +57,57 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.patch("/:id", async (req, res) => {
+  const productthumbnail = req.body.productthumbnail;
+  const producttitle = req.body.producttitle;
+  const productdescription = req.body.productdescription;
+  const productcost = req.body.productcost;
+  const onoffer = req.body.onoffer;
+  const id = req.params.id;
+  try {
+    let updateOperation;
+    if (productthumbnail) {
+      updateOperation = await pool.query(
+        "UPDATE products SET productthumbnail=$1 WHERE id=$2",
+        [productthumbnail, id],
+      );
+    }
+    if (producttitle) {
+      updateOperation = await pool.query(
+        "UPDATE products SET producttitle=$1 WHERE id=$2",
+        [producttitle, id],
+      );
+    }
+    if (productdescription) {
+      updateOperation = await pool.query(
+        "UPDATE products SET productdescription=$1 WHERE id=$2",
+        [productdescription, id],
+      );
+    }
+    if (productcost) {
+      updateOperation = await pool.query(
+        "UPDATE products SET productcost=$1 WHERE id=$2",
+        [productcost, id],
+      );
+    }
+    if (onoffer) {
+      updateOperation = await pool.query(
+        "UPDATE products SET onoffer=$1 WHERE id=$2",
+        [onoffer, id],
+      );
+    }
+
+    if (updateOperation.rowCount === 1) {
+      res
+        .status(200)
+        .json({ success: true, message: "Product Updated Successfully" });
+    } else {
+      res.status(404).json({ success: false, message: "Product Not Found" });
+    }
+    res.json(updateOperation);
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 export default router;
