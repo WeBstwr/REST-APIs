@@ -1,3 +1,22 @@
+- [Insomnia API Requests for Product Operations](#insomnia-api-requests-for-product-operations)
+  - [Get All Products](#get-all-products)
+    - [Steps:](#steps)
+    - [Response:](#response)
+  - [Get a Single Product](#get-a-single-product)
+    - [Steps:](#steps-1)
+    - [Response:](#response-1)
+  - [Create a Product](#create-a-product)
+    - [Steps:](#steps-2)
+    - [Response:](#response-2)
+  - [Update a Product](#update-a-product)
+    - [Steps:](#steps-3)
+    - [Response:](#response-3)
+  - [Delete a Product](#delete-a-product)
+    - [Steps:](#steps-4)
+    - [Response:](#response-4)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Insomnia API Requests for Product Operations
 
 This is a collection of Insomnia API requests for performing various product operations.
